@@ -1,472 +1,293 @@
-# 🎨 Інтернет-магазин виробів ручної роботи
+# 🎨 HandCraft Shop - SPL Final Project
 
-Повнофункціональний веб-проект інтернет-магазину з сучасною архітектурою та всіма необхідними функціями для продажу виробів ручної роботи.
+A full-featured e-commerce platform for handmade products, built with PHP/MySQL and modern frontend technologies.
 
-## 📋 Функціональність
+## 🚀 Live Demo
 
-### ✅ Основні вимоги (за чек-листом)
-- **Структура сайту**: Головна, товари, кошик з загальними блоками (header, body, footer)
-- **Функціональність товарів**: Список з зображеннями, описом, ціною, вибором кількості
-- **Робота з сесією**: Збереження кошика через `$_SESSION`
-- **PHP класи**: Page, ProductPage, CartPage, Product з усіма методами
-- **POST-форми**: Всі дії використовують POST-методи
-- **Додатково**: Зворотний зв'язок, уніфіковане оформлення, фільтри
+**Website:** https://100-percent-correct-decision.infinityfreeapp.com
 
-### 🚀 Розширений функціонал
-- 🔍 **Пошук товарів** з live-пошуком та фільтрами
-- ❤️ **Система обраного** з AJAX функціональністю
-- 🛒 **Оформлення замовлення** з різними способами оплати/доставки
-- 🌐 **Багатомовність** (українська та англійська)
-- 🛡️ **Система безпеки** (CSRF, XSS захист, Rate Limiting)
-- 📱 **Адаптивний дизайн** для всіх пристроїв
-- 🎨 **Сучасний UI** з анімаціями та ефектами
-- 📊 **Відстеження відвідувань** та логування
-- 🔐 **Шифрування даних** та захищені сесії
-- 📧 **Форма зворотного зв'язку** з валідацією
-- ⚡ **AJAX функціональність** без перезавантаження сторінок
+Test the complete functionality including shopping cart, favorites, multilingual interface, and order placement.
 
-## 🏗️ Архітектура
+## 📋 Project Overview
+
+This project demonstrates a complete e-commerce solution for selling handmade products with modern web development practices and security features.
+
+### ✅ Core Requirements Met
+- **Site Structure**: Home, Products, Cart with shared header/body/footer
+- **Product Functionality**: Product listing with images, descriptions, pricing, quantity selection
+- **Session Management**: Cart persistence using `$_SESSION`
+- **PHP Classes**: Page, ProductPage, CartPage, Product with full method implementation
+- **POST Forms**: All actions use POST methods for security
+- **Additional Features**: Contact form, unified design, product filtering
+
+### 🚀 Enhanced Features
+- 🔍 **Live Search** with filtering capabilities
+- ❤️ **Favorites System** with AJAX functionality  
+- 🛒 **Complete Checkout** with multiple payment/delivery options
+- 🌐 **Bilingual Support** (Ukrainian/English)
+- 🛡️ **Security Layer** (CSRF, XSS protection, Rate Limiting)
+- 📱 **Responsive Design** for all devices
+- ⚡ **AJAX Operations** without page reloads
+
+## 🏗️ Architecture
 
 ### Backend
-- **PHP 8.0+** з об'єктно-орієнтованим програмуванням
-- **MySQL 8.0** база даних з оптимізованими індексами
-- **PDO** для безпечної роботи з БД
-- **Паттерн Singleton** для Database класу
-- **MVC структура** з розділенням логіки
+- **PHP 8.0+** with Object-Oriented Programming
+- **MySQL** with optimized database schema
+- **PDO** for secure database operations
+- **Singleton Pattern** for Database class
+- **Security-first** approach with input validation
 
 ### Frontend
-- **Сучасний JavaScript** (ES6+) з класами
-- **CSS Grid/Flexbox** для адаптивної верстки
-- **AJAX** для асинхронних запитів
-- **Progressive Enhancement** підхід
+- **Modern JavaScript** (ES6+) with classes
+- **CSS Grid/Flexbox** for responsive layouts
+- **AJAX** for seamless user experience
+- **Progressive Enhancement** methodology
 
-## 📁 Повна структура проекту (26 файлів)
+## 📁 Complete Project Structure (Actual Files)
 
 ```
-handmade-shop/
-├── index.php                    # Головна сторінка з рекомендованими товарами
-├── products.php                 # Каталог товарів з фільтрами
-├── cart.php                     # Кошик покупок
-├── checkout.php                 # Оформлення замовлення
-├── favorites.php                # Сторінка обраних товарів
-├── contact.php                  # Форма зворотного зв'язку
-├── search.php                   # Розширений пошук товарів
-├── .htaccess                    # Конфігурація Apache сервера
-├── README.md                    # Документація проекту
-├── classes/                     # PHP класи
-│   ├── Page.php                # Базовий клас сторінки
-│   ├── ProductPage.php         # Клас сторінки товарів
-│   ├── CartPage.php            # Клас сторінки кошика
-│   ├── Product.php             # Клас товару з методами
-│   ├── Database.php            # Singleton клас БД
-│   ├── Session.php             # Клас роботи з сесіями
-│   └── Security.php            # Клас безпеки
-├── config/                      # Конфігураційні файли
-│   ├── database.php            # Налаштування підключення БД
-│   └── config.php              # Загальні константи
-├── lang/                        # Мовні файли
-│   ├── uk.php                  # Українська локалізація
-│   └── en.php                  # Англійська локалізація
-├── assets/                      # Статичні ресурси
-│   ├── css/
-│   │   ├── style.css           # Основні стилі
-│   │   └── responsive.css      # Адаптивні стилі
-│   ├── js/
-│   │   └── main.js             # JavaScript функціональність
-│   └── images/
-│       └── products/           # Зображення товарів
-├── ajax/                        # AJAX обробники
-│   ├── add_to_cart.php         # Додавання товару в кошик
-│   ├── add_to_favorites.php    # Додавання в обране
-│   ├── remove_from_cart.php    # Видалення з кошика
-│   ├── update_quantity.php     # Оновлення кількості
-│   ├── get_cart_count.php      # Отримання кількості в кошику
-│   ├── get_favorites_count.php # Лічильник обраних товарів
-│   ├── live_search.php         # Живий пошук
-│   └── change_language.php     # Зміна мови інтерфейсу
-├── includes/                    # Include файли
-│   ├── header.php              # Заголовок сайту
-│   ├── footer.php              # Підвал сайту
-│   ├── navigation.php          # Головне меню
-│   └── functions.php           # Допоміжні функції
-├── sql/
-│   └── database.sql            # SQL схема та тестові дані
-└── logs/                       # Логи (створюється автоматично)
+spl-final-project/
+├── 📄 cart.php                     # Shopping cart management
+├── 📄 checkout.php                 # Order placement and processing
+├── 📄 contact.php                  # Contact form with validation
+├── 📄 favorites.php                # User favorites management
+├── 📄 index.php                    # Home page with featured products
+├── 📄 products.php                 # Product catalog with filters
+├── 📄 search.php                   # Advanced search functionality
+├── 📄 README.md                    # Project documentation
+├── 📄 .gitignore                   # Git ignore rules
+├── 📁 ajax/                        # AJAX Request Handlers
+│   ├── 📄 add_to_cart.php          # Add product to cart
+│   ├── 📄 add_to_favorites.php     # Toggle favorites
+│   ├── 📄 change_language.php      # Language switching
+│   ├── 📄 get_cart_count.php       # Get cart item count
+│   ├── 📄 get_favorites_count.php  # Get favorites count
+│   ├── 📄 live_search.php          # Live search suggestions
+│   ├── 📄 remove_from_cart.php     # Remove cart items
+│   └── 📄 update_quantity.php      # Update cart quantities
+├── 📁 assets/                      # Static Frontend Assets
+│   ├── 📁 css/
+│   │   ├── 📄 responsive.css       # Mobile and tablet responsive styles
+│   │   └── 📄 style.css            # Main application styles
+│   ├── 📁 images/
+│   │   └── 📁 products/            # Product images directory
+│   │       ├── 📄 ceramic_cups_set.jpg
+│   │       ├── 📄 ceramic_vase_1.jpg
+│   │       ├── 📄 earrings_1.jpg
+│   │       ├── 📄 teddy_bear_1.jpg
+│   │       ├── 📄 textile_bag_1.jpg
+│   │       └── 📄 wooden_box_1.jpg
+│   └── 📁 js/
+│       └── 📄 main.js              # JavaScript functionality and AJAX
+├── 📁 classes/                     # PHP Object-Oriented Classes
+│   ├── 📄 CartPage.php             # Shopping cart page class
+│   ├── 📄 Database.php             # Singleton database connection class
+│   ├── 📄 Page.php                 # Base page class with common functionality
+│   ├── 📄 Product.php              # Product model with CRUD operations
+│   ├── 📄 ProductPage.php          # Product catalog page class
+│   ├── 📄 Security.php             # Security and validation functions
+│   └── 📄 Session.php              # Session management utilities
+├── 📁 config/                      # Configuration Files
+│   ├── 📄 config.php               # Application constants and settings
+│   └── 📄 database.php             # Database connection settings
+├── 📁 includes/                    # Shared Components
+│   ├── 📄 footer.php               # Site footer with links
+│   ├── 📄 functions.php            # Utility functions and helpers
+│   ├── 📄 header.php               # Site header with navigation
+│   └── 📄 navigation.php           # Main navigation menu
+├── 📁 lang/                        # Internationalization
+│   ├── 📄 en.php                   # English language translations
+│   └── 📄 uk.php                   # Ukrainian language translations
+└── 📁 sql/                         # Database Files
+    ├── 📄 database.sql             # Complete database schema + test data
+    └── 📄 production_database.sql  # Production-ready database export
 ```
 
-## 🚀 Встановлення та запуск
+### 📊 File Count Summary
+- **Core Pages**: 7 PHP files (cart, checkout, contact, favorites, index, products, search)
+- **AJAX Handlers**: 8 files for dynamic functionality
+- **Classes**: 7 OOP class files for backend logic
+- **Configuration**: 2 config files (database, app settings)
+- **Includes**: 4 shared component files (header, footer, navigation, functions)
+- **Languages**: 2 translation files (Ukrainian, English)
+- **Assets**: 3 directories (CSS, JS, Images)
+- **Product Images**: 6 sample product images
+- **Database**: 2 SQL schema files
+- **Total**: 35+ files organized in 7 main directories
 
-### 1. Системні вимоги
-- **PHP**: 7.4+ (рекомендовано 8.0+)
-- **MySQL**: 5.7+ або MariaDB 10.2+
-- **Веб-сервер**: Apache 2.4+ або Nginx 1.18+
-- **Розширення PHP**: PDO, PDO_MySQL, OpenSSL, MBString, GD
+## 🚀 Installation
 
-### 2. Покрокова інструкція
+### Requirements
+- **XAMPP** (Apache + MySQL + PHP 7.4+)
+- **PHP**: 7.4+ (Recommended: 8.0+)
+- **MySQL**: 5.7+ or MariaDB 10.2+
 
+### Local Development Setup (XAMPP)
+
+1. **Install XAMPP**
+   - Download from [https://www.apachefriends.org](https://www.apachefriends.org)
+   - Start Apache and MySQL services
+
+2. **Clone the repository**
 ```bash
-# 1. Завантаження проекту
-git clone https://github.com/your-repo/handmade-shop.git
-cd handmade-shop
-
-# 2. Створення бази даних
-mysql -u root -p
-CREATE DATABASE handmade_shop CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-exit
-
-# 3. Імпорт структури та даних
-mysql -u root -p handmade_shop < sql/database.sql
-
-# 4. Налаштування конфігурації
-nano config/database.php
-# Вкажіть ваші дані для підключення до БД
-
-# 5. Встановлення прав доступу
-chmod 755 assets/images/products
-chmod 644 config/*.php
-mkdir logs && chmod 755 logs
+git clone https://github.com/yourusername/spl-final-project.git
+# Move to XAMPP htdocs folder
+mv spl-final-project C:/xampp/htdocs/handmade-shop
 ```
 
-### 3. Конфігурація
+3. **Database Setup**
+   - Open phpMyAdmin: `http://localhost/phpmyadmin`
+   - Create database: `handmade_shop`
+   - Import: `sql/database.sql`
 
-**config/database.php:**
+4. **Configuration**
+Update `config/database.php` for local XAMPP:
 ```php
-<?php
 return [
     'host' => 'localhost',
     'database' => 'handmade_shop',
-    'username' => 'your_username',
-    'password' => 'your_password',
+    'username' => 'root',
+    'password' => '',  // Empty for XAMPP default
     'charset' => 'utf8mb4'
 ];
 ```
 
-**config/config.php:**
-```php
-<?php
-define('SITE_URL', 'https://yourdomain.com');
-define('ADMIN_EMAIL', 'admin@yourdomain.com');
-define('ENCRYPTION_KEY', 'your-unique-secret-key-here');
-```
+5. **Access Application**
+   - Open: `http://localhost/handmade-shop/index.php`
 
-### 4. Запуск
+## 🛡️ Security Features
 
-1. Розмістіть файли на веб-сервері
-2. Налаштуйте віртуальний хост
-3. Відкрийте `https://yourdomain.com/index.php`
+- **CSRF Protection** - Unique tokens for all forms
+- **XSS Prevention** - All output properly escaped
+- **SQL Injection Protection** - PDO prepared statements only
+- **Rate Limiting** - Request throttling per IP
+- **Input Validation** - Comprehensive data sanitization
+- **Secure Sessions** - Hardened session configuration
 
-## 🛡️ Безпека
+## 🌐 Multilingual Support
 
-### Реалізовані заходи:
-- **CSRF захист** - унікальні токени для всіх форм
-- **XSS захист** - екранування всього виводу
-- **SQL Injection** - тільки підготовлені PDO запити
-- **Rate Limiting** - обмеження кількості запитів на IP
-- **Secure Headers** - HTTP заголовки безпеки
-- **Session Security** - захищені налаштування сесій
-- **Input Validation** - валідація всіх користувацьких даних
-- **File Upload Security** - обмеження типів та розмірів файлів
+The application supports Ukrainian and English with:
+- Dynamic language switching
+- Translated interface elements
+- Localized product information
+- Language-specific URLs
 
-### Рекомендації для продакшн:
-- Використовуйте HTTPS (SSL сертифікат)
-- Налаштуйте файрвол на сервері
-- Регулярно робіть бекапи БД
-- Моніторьте логи безпеки
-- Оновлюйте PHP та MySQL
+## 📱 Responsive Design
 
-## 🎨 Кастомізація
+- **Mobile-first** approach
+- **CSS Grid/Flexbox** layouts
+- **Touch-friendly** interfaces
+- **Optimized images** for different screen sizes
 
-### Зміна кольорової схеми
-У файлі `assets/css/style.css`:
-```css
-:root {
-    --primary-color: #8B4513;    /* Основний колір */
-    --secondary-color: #D2691E;  /* Вторинний колір */
-    --accent-color: #F4A460;     /* Акцентний колір */
-    --text-color: #333;          /* Колір тексту */
-    --background: #FFF;          /* Фон */
-}
-```
+## 🎨 Key Features Demo
 
-### Додавання нової сторінки
-```php
-<?php
-// new-page.php
-require_once 'includes/functions.php';
-require_once 'classes/Page.php';
+### Shopping Cart
+- Add/remove products with AJAX
+- Quantity updates without page reload
+- Session-based persistence
+- Real-time total calculations
 
-class NewPage extends Page {
-    protected function renderBody() {
-        echo '<main class="container">';
-        echo '<h1>Нова сторінка</h1>';
-        echo '<p>Контент сторінки</p>';
-        echo '</main>';
-    }
-}
+### Product Management
+- Featured product highlighting
+- Category-based filtering
+- Search functionality
+- Image galleries with fallbacks
 
-$page = new NewPage('Назва сторінки');
-$page->render();
-?>
-```
+### User Experience
+- Smooth animations and transitions
+- Loading states and feedback
+- Error handling and validation
+- Accessible design patterns
 
-### Додавання нової мови
-1. Створіть файл `lang/de.php` (наприклад, для німецької)
-2. Додайте мову в `header.php`
-3. Оновіть `change_language.php`
+## 🔧 Technical Highlights
 
-## 📊 База даних
+### Database Design
+- Normalized schema with proper relationships
+- Indexed columns for performance
+- Support for multilingual content
+- Order tracking and analytics
 
-### Основні таблиці:
-- **products** - товари магазину
-- **categories** - категорії товарів
-- **orders** - замовлення клієнтів
-- **order_items** - позиції в замовленнях
-- **page_visits** - статистика відвідувань
-- **contact_messages** - повідомлення зворотного зв'язку
-- **users** - користувачі (для майбутнього розширення)
+### Code Quality
+- PSR-12 coding standards
+- Object-oriented architecture
+- Separation of concerns
+- Comprehensive error handling
 
-### Оптимізація продуктивності:
-```sql
--- Корисні індекси
-CREATE INDEX idx_products_category ON products(category_id);
-CREATE INDEX idx_products_featured ON products(is_featured);
-CREATE INDEX idx_orders_date ON orders(created_at);
-CREATE INDEX idx_visits_page ON page_visits(page_url, visit_time);
+### Performance
+- Optimized database queries
+- Lazy loading for images
+- Minimal JavaScript footprint
+- CSS/JS asset optimization
 
--- Очищення старих логів (рекомендується налаштувати cron)
-DELETE FROM page_visits WHERE visit_time < DATE_SUB(NOW(), INTERVAL 6 MONTH);
-```
+## 📊 Database Schema
 
-## 🚀 Деплойment
+### Core Tables
+- `products` - Product catalog with multilingual support
+- `categories` - Product categorization
+- `orders` - Customer orders and details
+- `order_items` - Order line items
+- `contact_messages` - Customer inquiries
 
-### Shared Hosting
-1. Завантажте файли через FTP/cPanel File Manager
-2. Створіть MySQL базу через cPanel
-3. Імпортуйте `database.sql`
-4. Налаштуйте `config/database.php`
+## 🧪 Testing
 
-### VPS/Dedicated Server
-```bash
-# Nginx конфігурація
-server {
-    listen 80;
-    server_name yourdomain.com;
-    return 301 https://$server_name$request_uri;
-}
+The application has been tested for:
+- ✅ Add/remove products from cart
+- ✅ Checkout process completion  
+- ✅ Search and filtering functionality
+- ✅ Language switching
+- ✅ Contact form submission
+- ✅ Responsive design across devices
+- ✅ Security vulnerability protection
 
-server {
-    listen 443 ssl http2;
-    server_name yourdomain.com;
-    root /var/www/handmade-shop;
-    index index.php;
+## 📈 Production Deployment
 
-    # SSL
-    ssl_certificate /path/to/cert.pem;
-    ssl_certificate_key /path/to/key.pem;
+Currently deployed on **InfinityFree** hosting:
+- Live database with test data
+- SSL certificate enabled
+- Error logging configured
+- Performance monitoring active
 
-    # PHP
-    location ~ \.php$ {
-        fastcgi_pass unix:/var/run/php/php8.0-fpm.sock;
-        fastcgi_index index.php;
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    }
+## 🎯 Learning Outcomes
 
-    # Static files
-    location ~* \.(css|js|png|jpg|jpeg|gif|webp|svg|ico)$ {
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-    }
-}
-```
+This project demonstrates proficiency in:
+- **Server-side scripting** with PHP
+- **Database design** and optimization
+- **Security implementation** in web applications
+- **Responsive web design** principles
+- **AJAX** and modern JavaScript
+- **Internationalization** (i18n)
+- **Object-oriented programming** concepts
 
-## 📈 Оптимізація та SEO
+## 📝 SPL Course Integration
 
-### Продуктивність:
-- **Кешування**: Налаштуйте Redis або Memcached
-- **CDN**: Використовуйте CloudFlare або Amazon CloudFront
-- **Оптимізація зображень**: Конвертація у WebP формат
-- **Мінімізація**: CSS/JS compression
-- **GZIP**: Compression на рівні сервера
+This project fulfills all **Scripted Programming Language** course requirements:
+- Comprehensive use of PHP scripting
+- Server-side session management
+- Database integration with PDO
+- Form processing and validation
+- File structure organization
+- Security best practices
 
-### SEO оптимізація:
-- Семантична HTML5 розмітка
-- Open Graph та Twitter Card теги
-- Schema.org structured data
-- Автогенерація sitemap.xml
-- Дружні URL (можна розширити)
+## 🤝 Contributing
 
-## 🔧 API та розширення
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/improvement`)
+3. Commit changes (`git commit -m 'Add improvement'`)
+4. Push to branch (`git push origin feature/improvement`)
+5. Open a Pull Request
 
-### Додавання товару програмно:
-```php
-$product = new Product([
-    'name' => 'Керамічна чашка',
-    'description' => 'Унікальна чашка ручної роботи',
-    'price' => 299.99,
-    'category_id' => 1,
-    'stock_quantity' => 10,
-    'is_featured' => true
-]);
-// Зберегти через відповідний метод
-```
+## 📄 License
 
-### JavaScript API:
-```javascript
-// Робота з кошиком
-const shop = new HandmadeShop();
-await shop.addToCart(productId, quantity);
-await shop.updateQuantity(productId, newQuantity);
-await shop.removeFromCart(productId);
+This project is open source and available under the [MIT License](LICENSE).
 
-// Обране
-await shop.toggleFavorite(productId);
-```
+## 👨‍💻 Author
 
-## 🧪 Тестування
-
-### Функціональне тестування:
-1. Додавання/видалення товарів з кошика
-2. Оформлення замовлення
-3. Робота фільтрів та пошуку
-4. Зміна мови інтерфейсу
-5. Форма зворотного зв'язку
-
-### Тестування безпеки:
-1. Спроби CSRF атак
-2. XSS інʼєкції
-3. SQL інʼєкції
-4. Завантаження шкідливих файлів
-
-## 🐛 Вирішення проблем
-
-### Типові помилки:
-
-**Помилка підключення до БД:**
-```
-PDOException: SQLSTATE[HY000] [2002] Connection refused
-```
-*Рішення: Перевірте налаштування в `config/database.php`*
-
-**Права доступу:**
-```
-Permission denied for assets/images/products/
-```
-*Рішення: `chmod 755 assets/images/products`*
-
-**Session помилки:**
-```
-Warning: session_start()
-```
-*Рішення: Перевірте права на папку `/tmp` або налаштуйте `session.save_path`*
-
-## 🤝 Внесок у проект
-
-1. Fork репозиторій
-2. Створіть feature branch (`git checkout -b feature/new-feature`)
-3. Commit зміни (`git commit -am 'Add new feature'`)
-4. Push в branch (`git push origin feature/new-feature`)
-5. Створіть Pull Request
-
-### Стандарти коду:
-- PSR-12 для PHP
-- ESLint для JavaScript
-- Semantic commit messages
-- Обов'язкове тестування нових функцій
-
-## 📝 Ліцензія
-
-MIT License - дивіться LICENSE файл для повних деталей.
-
-## 📞 Підтримка та контакти
-
-- **Email**: support@handmade-shop.com
-- **GitHub Issues**: [Створити тікет](https://github.com/your-repo/handmade-shop/issues)
-- **Документація**: [Wiki проекту](https://github.com/your-repo/handmade-shop/wiki)
-- **Telegram**: @handmade_shop_support
-
-## 🗓️ Changelog
-
-### v1.0.0 (поточна версія)
-- ✅ Базовий функціонал інтернет-магазину
-- ✅ Система кошика та оформлення замовлень
-- ✅ Багатомовність (українська/англійська)
-- ✅ AJAX функціональність
-- ✅ Адаптивний дизайн
-- ✅ Система безпеки
-
-## 🎯 Roadmap майбутніх версій
-
-### v1.1 (планується)
-- [ ] Система рейтингів та відгуків
-- [ ] Email сповіщення про замовлення
-- [ ] Інтеграція з Nova Poshta API
-- [ ] Система знижок та промокодів
-- [ ] Експорт замовлень у Excel
-
-### v1.2 (планується)
-- [ ] Адмін-панель для управління
-- [ ] Система користувачів з реєстрацією
-- [ ] Інтеграція з платіжними системами (LiqPay, Fondy)
-- [ ] Push-повідомлення
-- [ ] Прогресивний веб-додаток (PWA)
-
-### v2.0 (довгострокові плани)
-- [ ] Мобільний додаток (React Native)
-- [ ] REST API для інтеграцій
-- [ ] Система рекомендацій на основі AI
-- [ ] Інтеграція з соціальними мережами
-- [ ] Мультивендорна платформа
-
-## 🏆 Особливості проекту
-
-### Переваги архітектури:
-- **Модульність**: Легко додавати нові функції
-- **Безпека**: Комплексний захист від атак
-- **Продуктивність**: Оптимізований код та запити
-- **Масштабованість**: Готовність до збільшення навантаження
-- **Підтримуваність**: Чистий та документований код
-
-### Технічні особливості:
-- Використання сучасних PHP практик
-- Responsive Design з Mobile First підходом
-- Progressive Enhancement для JavaScript
-- Semantic HTML5 розмітка
-- Accessibility (WCAG 2.1) підтримка
+**SPL Final Project 2025**
+- Course: Scripted Programming Language
+- Technologies: PHP, MySQL, JavaScript, CSS
+- University: [Your University Name]
 
 ---
 
-**Створено з ❤️ для підтримки українських майстрів ручної роботи**
-
-*Цей проект демонструє повний цикл розробки сучасного веб-додатку з використанням класичних технологій PHP/MySQL та сучасних підходів до фронтенд розробки.*
-
-MIT License - дивіться LICENSE файл для деталей.
-
-## 📞 Підтримка
-
-- Email: support@handmade-shop.com
-- GitHub Issues: [створити issue](https://github.com/your-repo/handmade-shop/issues)
-- Документація: [docs.handmade-shop.com](https://docs.handmade-shop.com)
-
-## 🎯 Roadmap
-
-### v2.0 (найближчі оновлення):
-- [ ] Система користувачів з реєстрацією
-- [ ] Адмін-панель для управління
-- [ ] Інтеграція з платіжними системами
-- [ ] Система знижок та промокодів
-- [ ] Відгуки та рейтинги товарів
-- [ ] Інтеграція з соціальними мережами
-- [ ] Push-сповіщення
-- [ ] PWA функціональність
-
-### v2.1:
-- [ ] Мобільний додаток
-- [ ] API для третіх сторін
-- [ ] Система рекомендацій
-- [ ] Багаторівневе кешування
-- [ ] Аналітика та звіти
-
----
-
-**Створено з ❤️ для любителів ручної роботи**
+**Created with ❤️ for the SPL course final project**
